@@ -69,6 +69,7 @@ use dioxus_lib::prelude::*;
 /// # vdom.rebuild_in_place();
 /// # assert_eq!(dioxus_ssr::render(&vdom), "<h1>App</h1><p>Child</p>");
 /// ```
+#[component]
 pub fn Outlet<R: Routable + Clone>() -> Element {
     OutletContext::<R>::render()
 }
