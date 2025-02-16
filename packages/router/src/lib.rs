@@ -32,7 +32,7 @@ pub mod components {
     pub mod child_router;
 }
 
-mod contexts {
+pub mod contexts {
     pub(crate) mod navigator;
     pub(crate) mod outlet;
     pub(crate) mod router;
