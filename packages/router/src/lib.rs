@@ -37,6 +37,7 @@ mod contexts {
     pub(crate) mod outlet;
     pub(crate) mod router;
     pub use navigator::*;
+    pub use outlet::{use_outlet_context, OutletContext};
     pub(crate) use router::*;
     pub use router::{root_router, RouterContext};
 }
