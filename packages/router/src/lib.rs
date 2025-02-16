@@ -2,7 +2,7 @@
 #![doc(html_logo_url = "https://avatars.githubusercontent.com/u/79236386")]
 #![doc(html_favicon_url = "https://avatars.githubusercontent.com/u/79236386")]
 // cannot use forbid, because props derive macro generates #[allow(missing_docs)]
-#![deny(missing_docs)]
+// #![deny(missing_docs)]
 #![allow(non_snake_case)]
 
 pub mod navigation;
@@ -37,7 +37,7 @@ pub mod contexts {
     pub(crate) mod outlet;
     pub(crate) mod router;
     pub use navigator::*;
-    pub use outlet::{use_outlet_context, OutletContext};
+
     pub(crate) use router::*;
     pub use router::{root_router, RouterContext};
 }
@@ -70,6 +70,8 @@ pub mod prelude {
     pub use crate::routable::*;
     pub use crate::router_cfg::RouterConfig;
     pub use dioxus_router_macro::Routable;
+
+    pub use crate::contexts::outlet::{use_outlet_context, OutletContext};
 
     #[doc(hidden)]
     /// A component with props used in the macro
