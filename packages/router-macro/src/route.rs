@@ -292,8 +292,15 @@ impl Route {
         for (idx, layout_id) in self.layouts.iter().copied().enumerate() {
             let render_layout = layouts[layout_id.0].routable_match(nests);
             let dynamic_segments = self.dynamic_segments();
+            let mut field_name = None;
+            if let RouteType::Child(field) = &self.ty {
+                field_name = field.ident.as_ref();
+            }
+            let field_name = field_name.map(|f| quote!(#f,));
+            // This is a layout
             tokens.extend(quote! {
-                (#idx, Self::#name { #(#dynamic_segments,)* .. }) => {
+                #[allow(unused)]
+                (#idx, Self::#name { #(#dynamic_segments,)* #field_name .. }) => {
                     #render_layout
                 }
             });
