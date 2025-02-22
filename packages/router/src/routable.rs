@@ -597,7 +597,14 @@ pub trait Routable: FromStr + Display + Clone + 'static {
     const SITE_MAP: &'static [SiteMapSegment];
 
     /// Render the route at the given level
+    #[doc = " Render this route at the given level"]
     fn render(&self, level: usize) -> Element;
+
+    #[doc = " Render only the layouts for this route at the given level"]
+    fn render_layout(&self, level: usize) -> Element {
+        // Default implementation: just render normally
+        self.render(level)
+    }
 
     /// Checks if this route is a child of the given route.
     ///
