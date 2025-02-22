@@ -658,22 +658,13 @@ impl RouteEnum {
     fn routable_impl(&self) -> TokenStream2 {
         let name = &self.name;
         let site_map = &self.site_map;
+
         let mut matches = Vec::new();
 
         // Collect all routes matches
         for route in &self.endpoints {
             if let RouteEndpoint::Route(route) = route {
-                matches.push(route.routable_match(&self.layouts, &self.nests, name, false));
-                // Regular rendering
-            }
-        }
-
-        let mut layout_matches = Vec::new();
-        // Collect layout-only matches
-        for route in &self.endpoints {
-            if let RouteEndpoint::Route(route) = route {
-                layout_matches.push(route.routable_match(&self.layouts, &self.nests, name, true));
-                // Layout-only rendering
+                matches.push(route.routable_match(&self.layouts, &self.nests, name));
             }
         }
 
@@ -687,14 +678,6 @@ impl RouteEnum {
                     let myself = self.clone();
                     match (level, myself) {
                         #(#matches)*
-                        _ => VNode::empty()
-                    }
-                }
-
-                fn render_layout(&self, level: usize) -> dioxus_core::Element {
-                    let myself = self.clone();
-                    match (level, myself) {
-                        #(#layout_matches)*
                         _ => VNode::empty()
                     }
                 }
