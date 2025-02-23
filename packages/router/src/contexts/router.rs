@@ -271,8 +271,8 @@ impl RouterContext {
     pub fn site_map(&self) -> &'static [SiteMapSegment] {
         self.inner.read().site_map
     }
-
-    pub(crate) fn render_error(&self) -> Option<Element> {
+    /// Render the error if there is one
+    pub fn render_error(&self) -> Option<Element> {
         let inner_write = self.inner.write_unchecked();
         inner_write.subscribe_to_current_context();
         inner_write
