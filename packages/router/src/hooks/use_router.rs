@@ -1,6 +1,6 @@
 use crate::{prelude::RouterContext, utils::use_router_internal::use_router_internal};
 
-#[deprecated = "prefer the `router()` function or `use_route` functions"]
+#[doc(alias = "use_url")]
 #[must_use]
 /// A hook that provides access to information about the router.
 pub fn use_router() -> RouterContext {
