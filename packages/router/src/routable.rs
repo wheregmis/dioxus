@@ -599,6 +599,9 @@ pub trait Routable: FromStr + Display + Clone + 'static {
     /// Render the route at the given level
     fn render(&self, level: usize) -> Element;
 
+    /// Render the route's layouts at the given level
+    fn render_layouts(&self, level: usize) -> Element;
+
     /// Checks if this route is a child of the given route.
     ///
     /// # Example

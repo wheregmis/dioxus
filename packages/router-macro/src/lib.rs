@@ -668,6 +668,15 @@ impl RouteEnum {
             }
         }
 
+        let mut layout_matches = Vec::new();
+
+        // Collect all routes matches
+        for route in &self.endpoints {
+            if let RouteEndpoint::Route(route) = route {
+                layout_matches.push(route.routable_match(&self.layouts, &self.nests, name));
+            }
+        }
+
         quote! {
             impl dioxus_router::routable::Routable for #name where Self: Clone {
                 const SITE_MAP: &'static [dioxus_router::routable::SiteMapSegment] = &[
@@ -678,6 +687,14 @@ impl RouteEnum {
                     let myself = self.clone();
                     match (level, myself) {
                         #(#matches)*
+                        _ => VNode::empty()
+                    }
+                }
+
+                fn render_layouts(&self, level: usize) -> dioxus_core::Element {
+                    let myself = self.clone();
+                    match (level, myself) {
+                        #(#layout_matches)*
                         _ => VNode::empty()
                     }
                 }
