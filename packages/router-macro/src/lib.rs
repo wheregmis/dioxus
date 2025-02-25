@@ -673,7 +673,7 @@ impl RouteEnum {
         // Collect all routes matches
         for route in &self.endpoints {
             if let RouteEndpoint::Route(route) = route {
-                layout_matches.push(route.routable_match(&self.layouts, &self.nests, name));
+                layout_matches.push(route.routable_match_layouts(&self.layouts, &self.nests, name));
             }
         }
 
