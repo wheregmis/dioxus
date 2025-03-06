@@ -27,7 +27,12 @@ pub fn root_router() -> Option<RouterContext> {
     }
 }
 
-pub(crate) fn provide_router_context(ctx: RouterContext) {
+/// Provides a router context to the current scope and optionally sets it as the root router if none exists.
+///
+/// # Arguments
+///
+/// * `ctx` - The router context to provide
+pub fn provide_router_context(ctx: RouterContext) {
     if root_router().is_none() {
         ScopeId::ROOT.provide_context(RootRouterContext(Signal::new_in_scope(
             Some(ctx),
