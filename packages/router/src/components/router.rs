@@ -11,9 +11,8 @@ use crate::{
 /// The props for [`Router`].
 #[derive(Props)]
 pub struct RouterProps<R: Clone + 'static> {
-    /// Configuration callback that returns a [`RouterConfig`] when called.
     #[props(default, into)]
-    pub config: Callback<(), RouterConfig<R>>,
+    config: Callback<(), RouterConfig<R>>,
 }
 
 impl<T: Clone> Clone for RouterProps<T> {
