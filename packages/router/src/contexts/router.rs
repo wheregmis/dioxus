@@ -94,12 +94,7 @@ pub struct RouterContext {
 }
 
 impl RouterContext {
-    /// Creates a new RouterContext with the given configuration.
-    ///
-    /// # Arguments
-    ///
-    /// * `cfg` - The router configuration that defines the routing behavior
-    pub fn new<R: Routable + 'static>(cfg: RouterConfig<R>) -> Self
+    pub(crate) fn new<R: Routable + 'static>(cfg: RouterConfig<R>) -> Self
     where
         <R as std::str::FromStr>::Err: std::fmt::Display,
     {
